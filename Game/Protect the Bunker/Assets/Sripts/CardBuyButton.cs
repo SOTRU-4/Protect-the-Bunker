@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class CardBuyButton : MonoBehaviour
 {
-    [SerializeField] CardBuyerPoint point;
+    CardBuyerPoint point;
     [SerializeField] CardBase card;
     public CardBuyer[] cardBuyer;
     public void BuyTheCard()
@@ -11,6 +11,7 @@ public class CardBuyButton : MonoBehaviour
         {
             if (buyer.selectedCardBuyer != null)
             {
+                point = buyer.Point;
                 if (point.isCardBuyed != null)
                 {
                     return;

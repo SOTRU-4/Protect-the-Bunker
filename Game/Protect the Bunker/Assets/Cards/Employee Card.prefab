@@ -97,3 +97,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5547792f02b3c30449f661e8aed31d47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  interactPanel: {fileID: 0}

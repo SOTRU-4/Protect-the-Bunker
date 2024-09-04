@@ -1,4 +1,4 @@
-using Unity.VisualScripting;
+using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -6,6 +6,10 @@ public class GameManager : MonoBehaviour
 {
     Camera cam;
     static public GameManager instance;
+
+
+    float timeRemaining = 60;
+    [SerializeField] TextMeshProUGUI timerText;
 
     private IInteractable lastInteacted;
     void Start()
@@ -17,6 +21,7 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         MouseClickHandle();
+        Timer();
     }
 
     private void MouseClickHandle()
@@ -54,5 +59,21 @@ public class GameManager : MonoBehaviour
                 }
             }
         }
+    }
+
+    private void Timer()
+    {
+        if(timeRemaining > 0)
+        {
+            timeRemaining -= Time.deltaTime;
+
+            if (timeRemaining < 10) { timerText.color = Color.red; }
+            else { timerText.color = Color.black; }
+
+            int secunds = Mathf.FloorToInt(timeRemaining);
+            int millisecunds = Mathf.FloorToInt((timeRemaining - secunds) * 100);
+            
+            timerText.text = string.Format("{0:00}:{1:00}", secunds, millisecunds);
+        } 
     }
 }

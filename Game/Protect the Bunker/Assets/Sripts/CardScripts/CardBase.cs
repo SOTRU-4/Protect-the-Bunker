@@ -2,17 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CardBase : MonoBehaviour
+public class CardBase : MonoBehaviour, IInteractable
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private GameObject interactPanel;
+    public void Interact()
     {
-        
+        interactPanel.SetActive(true);
     }
 
-    // Update is called once per frame
-    void Update()
+    public void StopInteract()
     {
-        
+        interactPanel.SetActive(false);
+    }
+
+    public void DeleteCard()
+    {
+        Destroy(gameObject);
     }
 }
