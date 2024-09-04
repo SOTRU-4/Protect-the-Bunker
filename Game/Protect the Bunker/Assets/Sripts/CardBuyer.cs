@@ -2,26 +2,20 @@ using UnityEngine;
 
 public class CardBuyer : MonoBehaviour, IInteractable
 {
-    [SerializeField] private GameObject buyPanel;
-
+    public GameObject buyPanel;
+    public CardBuyer selectedCardBuyer;
+    [SerializeField] CardBuyerPoint point;
+    public CardBuyerPoint Point { get { return point; } }
     public void Interact()
     {
         buyPanel.SetActive(true);
+        selectedCardBuyer = this;
     }
 
     public void StopInteract()
     {
-
-    }
-
-    void Start()
-    {
-        
-    }
-
-    void Update()
-    {
-        
+        buyPanel?.SetActive(false);
+        selectedCardBuyer = null;
     }
 
 }
