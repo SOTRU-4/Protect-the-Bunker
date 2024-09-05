@@ -7,6 +7,9 @@ public class GameManager : MonoBehaviour
     Camera cam;
     static public GameManager instance;
 
+    public CardBase selectedCard;
+    [SerializeField] private GameObject interactPanel;
+
 
     float timeRemaining = 60;
     [SerializeField] TextMeshProUGUI timerText;
@@ -22,6 +25,7 @@ public class GameManager : MonoBehaviour
     {
         MouseClickHandle();
         Timer();
+        InteractPanel();
     }
 
     private void MouseClickHandle()
@@ -76,4 +80,10 @@ public class GameManager : MonoBehaviour
             timerText.text = string.Format("{0:00}:{1:00}", secunds, millisecunds);
         } 
     }
+
+    private void InteractPanel()
+    {
+        if(selectedCard != null) { interactPanel.SetActive(true); }
+        else { interactPanel.SetActive(false); }
+    } 
 }

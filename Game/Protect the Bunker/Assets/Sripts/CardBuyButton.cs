@@ -18,11 +18,13 @@ public class CardBuyButton : MonoBehaviour
                 }
                 point = buyer.selectedCardBuyer.Point;
                 Vector2 spawnPoint = new Vector2(point.gameObject.transform.position.x, point.gameObject.transform.position.y);
-                Instantiate(card, spawnPoint, Quaternion.identity);
+                var spawnedCard = Instantiate(card, spawnPoint, Quaternion.identity);
 
                 point.isCardBuyed = card;
 
+                buyer.Point.isCardBuyed = spawnedCard;
                 buyer.StopInteract();
+
             }
         }
 

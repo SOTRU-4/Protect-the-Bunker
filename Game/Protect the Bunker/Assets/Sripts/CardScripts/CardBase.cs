@@ -4,19 +4,18 @@ using UnityEngine;
 
 public class CardBase : MonoBehaviour, IInteractable
 {
-    [SerializeField] private GameObject interactPanel;
     public void Interact()
     {
-        interactPanel.SetActive(true);
+        GameManager.instance.selectedCard = this;
     }
 
     public void StopInteract()
     {
-        interactPanel.SetActive(false);
+        GameManager.instance.selectedCard = null;
     }
 
     public void DeleteCard()
     {
-        Destroy(gameObject);
+        Destroy(GameManager.instance.selectedCard.gameObject);
     }
 }

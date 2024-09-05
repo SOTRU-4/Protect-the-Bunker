@@ -5,7 +5,17 @@ public class CardBuyer : MonoBehaviour, IInteractable
     public GameObject buyPanel;
     public CardBuyer selectedCardBuyer;
     [SerializeField] CardBuyerPoint point;
-    public CardBuyerPoint Point { get { return point; } }
+    public CardBuyerPoint Point 
+    { 
+        get 
+        { 
+            if (point != null)
+            {
+                return point;
+            } else { return null; }
+        } 
+    }
+
     public void Interact()
     {
         buyPanel.SetActive(true);
