@@ -2,12 +2,12 @@ using UnityEngine;
 
 public class CardBuyerPoint : MonoBehaviour
 {
-    public CardBase isCardBuyed;
+    public CardBase BuyedCard;
     [SerializeField] GameObject cardBuyer;
 
     void Update()
     {
-        if (isCardBuyed != null)
+        if (BuyedCard != null)
         {
             cardBuyer.SetActive(false);
         }
