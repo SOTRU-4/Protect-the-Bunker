@@ -450,6 +450,7 @@ GameObject:
   - component: {fileID: 151962412295413646}
   - component: {fileID: 7628317330454935578}
   - component: {fileID: -7727693157966159550}
+  - component: {fileID: 1183405730508257747}
   m_Layer: 0
   m_Name: Gunner Card
   m_TagString: Untagged
@@ -539,6 +540,57 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28a4ad0449e2f82408bbd1d3c1bf54c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  health: 6
+  armor: 2
+  damage: 4
+  healthText: {fileID: 114408696249481395}
+  armorText: {fileID: 8087423285422345670}
+  attackText: {fileID: 1408910399478505882}
+--- !u!61 &1183405730508257747
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4678590441086845003}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 11.219999, y: 14.701573}
+    newSize: {x: 11.219999, y: 14.701573}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 11.219999, y: 14.701573}
+  m_EdgeRadius: 0
 --- !u!1 &7466442592612938405
 GameObject:
   m_ObjectHideFlags: 0

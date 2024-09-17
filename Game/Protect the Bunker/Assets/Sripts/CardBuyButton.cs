@@ -32,6 +32,11 @@ public class CardBuyButton : MonoBehaviour
 
                 point.BuyedCard = card;
 
+                if (buyer.isCardFightable)
+                {
+                    GameManager.instance.playerBattleCards.Add(spawnedCard);
+                }
+
                 buyer.Point.BuyedCard = spawnedCard;
                 buyer.StopInteract();
 

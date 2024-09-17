@@ -5,6 +5,7 @@ public class CardBuyer : MonoBehaviour, IInteractable
     public GameObject buyPanel;
     public CardBuyer selectedCardBuyer;
     [SerializeField] CardBuyerPoint point;
+    public bool isCardFightable;
     public CardBuyerPoint Point 
     { 
         get 

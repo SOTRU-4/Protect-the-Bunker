@@ -1,11 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 
-public class Guard : BattleCardBase, IFightable
+public class Beast : MonsterCardBase, IFightable
 {
-    private bool isAttacked;
     public void Attack()
     {
 

@@ -1,6 +1,8 @@
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
+
 
 public class GameManager : MonoBehaviour
 {
@@ -10,15 +12,21 @@ public class GameManager : MonoBehaviour
     public CardBase selectedCard;
     [SerializeField] private GameObject interactPanel;
 
-
-    float timeRemaining = 60;
+    public bool isFightOn = false;
+    float baseTimeRemaining = 60;
+    [SerializeField] float timeRemaining;
     [SerializeField] TextMeshProUGUI timerText;
 
+    public int day { get; private set; } = 1;
+
+    public List<CardBase> playerBattleCards;
+    [HideInInspector] public RaycastHit2D hit;
     private IInteractable lastInteacted;
     void Start()
     {
         instance = this;
         cam = Camera.main;
+        timeRemaining = baseTimeRemaining;
     }
 
     void Update()
@@ -35,12 +43,20 @@ public class GameManager : MonoBehaviour
             return;
         }
 
-
         if (Input.GetMouseButtonDown(0))
         {
             Vector3 mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
             mousePos.z = 0;
-            RaycastHit2D hit = Physics2D.Raycast(mousePos, Vector2.zero, Mathf.Infinity);
+            hit = Physics2D.Raycast(mousePos, Vector2.zero, Mathf.Infinity);
+
+
+            if (hit.collider != null && hit.collider.TryGetComponent(out IFightable fightObject))
+            {
+                if (hit.collider.CompareTag("Enemy") && selectedCard.TryGetComponent(out BattleCardBase soldier))
+                {
+                    fightObject.TakeDamage(soldier.damage);
+                }
+            }
 
             if (hit.collider != null && hit.collider.TryGetComponent(out IInteractable hitCollider))
             {
@@ -53,7 +69,6 @@ public class GameManager : MonoBehaviour
 
                 lastInteacted = hitCollider;
             }
-
             else
             {
                 if(lastInteacted != null)
@@ -62,6 +77,8 @@ public class GameManager : MonoBehaviour
                     lastInteacted = null;
                 }
             }
+
+            
         }
     }
 
@@ -78,12 +95,34 @@ public class GameManager : MonoBehaviour
             int millisecunds = Mathf.FloorToInt((timeRemaining - secunds) * 100);
             
             timerText.text = string.Format("{0:00}:{1:00}", secunds, millisecunds);
+
+
+            if(timeRemaining <= 0)
+            {
+                isFightOn = !isFightOn;
+
+                if(isFightOn)
+                {
+                    timeRemaining = baseTimeRemaining / 2;
+                }
+                else
+                {
+                    timeRemaining = baseTimeRemaining;
+                    day += 1;
+                }
+            }
         } 
     }
 
     private void InteractPanel()
     {
-        if(selectedCard != null) { interactPanel.SetActive(true); }
-        else { interactPanel.SetActive(false); }
+        if (!isFightOn)
+        {
+            if (selectedCard != null) { interactPanel.SetActive(true); }
+            else { interactPanel.SetActive(false); }
+        }
+        
     } 
+
+
 }
